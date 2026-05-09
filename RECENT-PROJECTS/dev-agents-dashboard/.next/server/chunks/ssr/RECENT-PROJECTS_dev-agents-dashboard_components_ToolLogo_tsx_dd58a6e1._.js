@@ -1,0 +1,3 @@
+module.exports=[73410,a=>{"use strict";var b=a.i(24476);function c({name:a,logo:c,fallbackLetter:d,color:e}){return(0,b.jsx)("div",{className:`flex items-center justify-center ${"Codex"===a?"w-12 h-12":"w-10 h-10"}`,children:(0,b.jsx)("img",{src:c,alt:`${a} logo`,className:"w-full h-full object-contain",onError:a=>{let b=a.target;b.style.display="none";let c=b.parentElement;c&&(c.textContent=d)}})})}a.s(["default",()=>c])}];
+
+//# sourceMappingURL=RECENT-PROJECTS_dev-agents-dashboard_components_ToolLogo_tsx_dd58a6e1._.js.map
