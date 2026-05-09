@@ -265,7 +265,6 @@ export default function App() {
                     { label: 'Service', value: 'Design System Creation' },
                     { label: 'My Role', value: 'Lead Product Designer' },
                     { label: 'Industry', value: 'Media' },
-                    { label: 'Team', value: 'Dev Partner: Matt Shade' },
                   ].map((stat) => (
                     <div key={stat.label}>
                       <p className="text-[10px] uppercase tracking-widest text-muted mb-1">{stat.label}</p>
