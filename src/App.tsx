@@ -687,7 +687,7 @@ export default function App() {
               <a href="mailto:hellomattshade@gmail.com" className="text-xl hover:text-accent transition-colors">get in touch</a>
             </div>
             <div className="grid grid-cols-2 gap-x-12 gap-y-4">
-              <a href="#hero" className="text-xs uppercase tracking-widest text-muted hover:text-accent">Home</a>
+              <a href="https://mattshade.com" className="text-xs uppercase tracking-widest text-muted hover:text-accent">Home</a>
               <a href="https://mattshade.com/about" className="text-xs uppercase tracking-widest text-muted hover:text-accent">about</a>
               <a href="https://mattshade.com/contact" className="text-xs uppercase tracking-widest text-muted hover:text-accent">contact</a>
               <a href="https://linkedin.com/in/mattshade" className="text-xs uppercase tracking-widest text-muted hover:text-accent">linkedin</a>
