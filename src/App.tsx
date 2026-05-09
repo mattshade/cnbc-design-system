@@ -685,7 +685,7 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12">
             <div className="max-w-md">
               <h3 className="text-4xl font-bold mb-8 tracking-tighter">let's create together!</h3>
-              <a href="mailto:hello@mattshade.com" className="text-xl hover:text-accent transition-colors">get in touch</a>
+              <a href="mailto:hellomattshade@gmail.com" className="text-xl hover:text-accent transition-colors">get in touch</a>
             </div>
             <div className="grid grid-cols-2 gap-x-12 gap-y-4">
               <a href="#hero" className="text-xs uppercase tracking-widest text-muted hover:text-accent">Home</a>
