@@ -36,8 +36,9 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Overview', href: '#overview' },
     { name: 'Problem', href: '#problem' },
-    { name: 'Process', href: '#process' },
+    { name: 'Solution', href: '#solution' },
     { name: 'System', href: '#system' },
+    { name: 'Process', href: '#process' },
     { name: 'Implementation', href: '#implementation' },
   ]
 
@@ -51,26 +52,11 @@ const Navbar = () => {
           href="https://mattshade.com"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-2 group transition-transform duration-300 hover:scale-[1.02]"
+          className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.02]"
         >
-          <svg 
-            width="18" 
-            height="18" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            className="shrink-0"
-          >
-            <path 
-              fill="currentColor" 
-              className="text-accent"
-              d="M 12 1 L 20 14 L 23 21 L 16 16 L 12 23 L 8 16 L 1 21 L 4 14 Z"
-            />
-            <circle cx="12" cy="10.5" r="3.2" fill="#ffffff" />
-            <circle cx="12" cy="10.5" r="1.3" fill="#0a0a0b" />
-          </svg>
-          <span className="text-[16px] font-semibold text-[#F3F4F6] tracking-tight whitespace-nowrap">
-            Matt Shade
+          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-background font-bold text-xl">C</div>
+          <span className="text-[16px] font-bold text-[#F3F4F6] tracking-tight whitespace-nowrap uppercase">
+            CNBC Design System
           </span>
         </motion.a>
 
@@ -270,15 +256,17 @@ export default function App() {
                   <span className="text-muted/40">Design System</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-muted leading-relaxed max-w-xl mb-10">
-                  A centralized architectural framework for media scalability, unifying design principles and production engineering.
+                  Focuses on the development and implementation of a comprehensive design system for CNBC, keeping our brand consistent, and improving the user experience across all digital platforms.
                 </p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 py-8 border-y border-border">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 py-8 border-y border-border">
                   {[
                     { label: 'Company', value: 'CNBC' },
-                    { label: 'Role', value: 'Lead Product Designer' },
-                    { label: 'Status', value: 'Production' },
-                    { label: 'Dev Partner', value: 'Matt Shade' },
+                    { label: 'Year', value: '2021' },
+                    { label: 'Service', value: 'Design System Creation' },
+                    { label: 'My Role', value: 'Lead Product Designer' },
+                    { label: 'Industry', value: 'Media' },
+                    { label: 'Team', value: 'Dev Partner: Matt Shade' },
                   ].map((stat) => (
                     <div key={stat.label}>
                       <p className="text-[10px] uppercase tracking-widest text-muted mb-1">{stat.label}</p>
@@ -324,6 +312,9 @@ export default function App() {
                 <p>
                   Storybook also houses foundational principles and overarching rulesets through a simple platform, accessible for all internal teams.
                 </p>
+                <p>
+                  It’s a central hub for all our design principles, components, and guidelines, helping our designers and developers create cohesive and high-quality user interfaces more efficiently.
+                </p>
               </div>
             </div>
             <div className="lg:col-span-7">
@@ -341,7 +332,7 @@ export default function App() {
       <section id="problem" className="section-padding">
         <div className="container-custom">
           <SectionHeader 
-            tag="The Challenge" 
+            tag="The Problem" 
             title="Design Debt & Fragmentation"
             description="From a lack of foundations, CNBC.com was redesigned and had a series of dependencies from an older platform, resulting in unscalable patterns."
           />
@@ -355,12 +346,12 @@ export default function App() {
               },
               { 
                 title: 'Unscalable Patterns', 
-                desc: 'Many existing components did not scale well for old and new use cases, leading to single-use patterns and poor, inconsistent UX.',
+                desc: 'Many existing components did not scale well for old and new use cases, leading to single-use patterns and poor, inconsistent user experience.',
                 icon: <Layout className="w-6 h-6 text-accent" />
               },
               { 
-                title: 'No Source of Truth', 
-                desc: 'Designs were dispersed throughout many different files (Sketch, Illustrator, Figma) with no clear documentation or versioning.',
+                title: 'No Centralized Location', 
+                desc: 'Designs were dispersed throughout many different files (Sketch, Illustrator, Figma) with no clear documentation or versioning, leading to inconsistent visual language.',
                 icon: <Search className="w-6 h-6 text-accent" />
               }
             ].map((item, i) => (
@@ -381,13 +372,65 @@ export default function App() {
         </div>
       </section>
 
+      {/* Solution Section */}
+      <section id="solution" className="section-padding bg-accent/[0.02]">
+        <div className="container-custom">
+          <SectionHeader 
+            tag="The Solution" 
+            title="A Unified Source of Truth"
+            description="Providing a centralized location to access the most-up-to-date designs used for our product."
+          />
+          
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="p-10 bg-surface border border-border rounded-3xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Layers className="w-24 h-24" />
+              </div>
+              <h3 className="text-2xl font-bold mb-6">Pattern Library</h3>
+              <p className="text-muted leading-relaxed mb-6">
+                Includes all core foundations such as typography, color, layout as well as patterns for components and modules.
+              </p>
+              <ul className="space-y-3 text-sm text-muted">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                  Cross-check specifications for attributes
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                  Reference UI for accuracy and QA
+                </li>
+              </ul>
+            </div>
+            <div className="p-10 bg-surface border border-border rounded-3xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                <BookOpen className="w-24 h-24" />
+              </div>
+              <h3 className="text-2xl font-bold mb-6">Style Guide</h3>
+              <p className="text-muted leading-relaxed mb-6">
+                Providing principles, guidelines and documentation for engineers to house and test new components.
+              </p>
+              <ul className="space-y-3 text-sm text-muted">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                  Embedded Figma designs in Storybook
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                  Reference for future product directions
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process Section */}
       <section id="process" className="section-padding bg-surface/30 overflow-hidden">
         <div className="container-custom">
           <SectionHeader 
             tag="Asset Discovery" 
             title="Auditing the Landscape"
-            description="We first needed to assess the design debt. I led the UI audit, collaborating with agile teams, QA, product, and engineering."
+            description="We first needed to assess the design debt on CNBC.COM. I led the UI audit, collaborating with agile teams, QA, product, and engineering."
           />
 
           <div className="grid lg:grid-cols-2 gap-12 mb-24">
@@ -395,22 +438,22 @@ export default function App() {
               <div className="flex gap-6 items-start">
                 <div className="w-12 h-12 bg-accent/10 border border-accent/20 rounded-lg flex items-center justify-center shrink-0 text-accent font-bold">1</div>
                 <div>
-                  <h4 className="text-xl font-bold mb-2">UI Audit & Inventory</h4>
-                  <p className="text-muted leading-relaxed">Flagging UI inconsistencies by running component cutout sessions of all known pieces of the site.</p>
+                  <h4 className="text-xl font-bold mb-2">Audit & Discuss</h4>
+                  <p className="text-muted leading-relaxed">Auditing UI patterns and interactions to identify inconsistencies across the site.</p>
                 </div>
               </div>
               <div className="flex gap-6 items-start">
                 <div className="w-12 h-12 bg-accent/10 border border-accent/20 rounded-lg flex items-center justify-center shrink-0 text-accent font-bold">2</div>
                 <div>
-                  <h4 className="text-xl font-bold mb-2">Short-term Improvements</h4>
-                  <p className="text-muted leading-relaxed">Finding immediate opportunities to bridge the gap between legacy and modern components.</p>
+                  <h4 className="text-xl font-bold mb-2">Inventory Cutouts</h4>
+                  <p className="text-muted leading-relaxed">Running component cutout sessions of all known pieces to create a running inventory of what is needed.</p>
                 </div>
               </div>
               <div className="flex gap-6 items-start">
                 <div className="w-12 h-12 bg-accent/10 border border-accent/20 rounded-lg flex items-center justify-center shrink-0 text-accent font-bold">3</div>
                 <div>
-                  <h4 className="text-xl font-bold mb-2">Taxonomy Definition</h4>
-                  <p className="text-muted leading-relaxed">Structured a cutout process to categorize all components working down to the smallest element level.</p>
+                  <h4 className="text-xl font-bold mb-2">Improvements & Groundwork</h4>
+                  <p className="text-muted leading-relaxed">Finding opportunities for short & long-term improvements and laying the groundwork for the Style Guide.</p>
                 </div>
               </div>
             </div>
@@ -426,12 +469,12 @@ export default function App() {
           </div>
 
           <SectionHeader 
-            tag="Atomic Structure" 
+            tag="atomic structure" 
             title="Building Blocks"
             description="We settled on a hierarchical approach classifying functional patterns based on their complexity, adopting Atomic Design principles."
           />
 
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-center mb-24">
             <div className="lg:col-span-7">
               <ImageZoom src="/images/atomic-structure.webp" alt="Atomic Structure" caption="CNBC Atomic Taxonomy: Elements -> Components -> Modules" />
             </div>
@@ -452,6 +495,19 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold">Pattern Documentation & Taxonomy</h3>
+              <p className="text-muted leading-relaxed">
+                Using a detailed component naming structure in Figma, including component name, type, variation, and screen type, makes for an organized and efficient pattern library. 
+              </p>
+              <p className="text-muted leading-relaxed text-sm">
+                This structure simplifies maintenance and scalability, aids in efficient prototyping and handoff, and ensures design consistency across devices, resulting in a cohesive user experience.
+              </p>
+            </div>
+            <ImageZoom src="/images/naming-structure.webp" alt="Component naming structure" caption="Naming conventions within Figma menu" />
+          </div>
         </div>
       </section>
 
@@ -468,28 +524,14 @@ export default function App() {
             <div>
               <h3 className="text-3xl font-bold mb-6">Typography</h3>
               <p className="text-muted mb-8 leading-relaxed">
-                I decided on a modular scale of Major Second (1.125), rounded to the nearest whole number. This approach ensured flexibility while maintaining visual harmony and vertical rhythm across our four breakpoints.
+                I decided on a modular scale of Major Second (1.125), rounded to the nearest whole number. This approach ensured flexibility while maintaining visual harmony and vertical rhythm across our four breakpoints. Additionally, a line-height system was incorporated using 1.125 times the font size.
               </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3 text-sm font-medium">
-                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                  Scale: Major Second (1.125)
-                </li>
-                <li className="flex items-center gap-3 text-sm font-medium">
-                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                  Line-height: 1.125x font size
-                </li>
-                <li className="flex items-center gap-3 text-sm font-medium">
-                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                  Dynamic breakpoints for responsive vertical rhythm
-                </li>
-              </ul>
               <ImageZoom src="/images/figma-drilldown.webp" alt="Typography Drilldown" />
             </div>
             <div>
-              <h3 className="text-3xl font-bold mb-6">Color Palette</h3>
+              <h3 className="text-3xl font-bold mb-6">Color</h3>
               <p className="text-muted mb-8 leading-relaxed">
-                We use a tonal range number system for balanced progression, from 0 (lightest) to 100 (darkest). "System 10" is easier for teams to remember than arbitrary names.
+                We use a tonal range number system for balanced progression, from 0 (lightest) to 100 (darkest). "System 10" is easier for teams to remember than arbitrary names. Font foreground colors meet minimum WCAG AA Standards.
               </p>
               <div className="grid grid-cols-5 gap-2 mb-8">
                 {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90].map(val => (
@@ -510,7 +552,7 @@ export default function App() {
             <div className="lg:col-span-5">
               <h3 className="text-3xl font-bold mb-6">Spatial & Grids</h3>
               <p className="text-muted mb-8 leading-relaxed">
-                Utilizing a 4pt grid system allowed for consistent scaling across the massive variety of screen sizes. We initially tried an 8pt grid but found it too rigid for tight proximity elements.
+                Utilizing a 4pt grid system allowed for consistent scaling across the massive variety of screen sizes. A smaller number than 4 would increase complexity, while a larger number would reduce flexibility.
               </p>
               <div className="p-6 bg-surface rounded-2xl border border-border">
                 <div className="grid grid-cols-6 gap-4">
@@ -524,7 +566,7 @@ export default function App() {
               </div>
             </div>
             <div className="lg:col-span-7">
-              <ImageZoom src="/images/grid-system.webp" alt="Grid System" caption="4pt grid implementation on web layout" />
+              <ImageZoom src="/images/grid-system.webp" alt="Grid System" caption="Web layout scale and 4pt grid implementation" />
             </div>
           </div>
         </div>
@@ -534,7 +576,7 @@ export default function App() {
       <section id="implementation" className="section-padding bg-surface/30">
         <div className="container-custom">
           <SectionHeader 
-            tag="Implementation" 
+            tag="Storybook Integration" 
             title="The Living Style Guide"
             description="Bridging the gap between Figma and production through Storybook integration."
           />
@@ -546,29 +588,45 @@ export default function App() {
             <div className="lg:col-span-5 space-y-8">
               <div className="p-8 bg-background border border-border rounded-2xl">
                 <BookOpen className="w-10 h-10 text-accent mb-6" />
-                <h4 className="text-xl font-bold mb-4">Storybook Integration</h4>
+                <h4 className="text-xl font-bold mb-4">Centralized Space</h4>
                 <p className="text-sm text-muted leading-relaxed">
-                  Storybook served as our UI component explorer, enabling engineers to build in isolation while designers embedded specific style guide notes and real-time Figma specs.
+                  Adopting Storybook provided engineers with a centralized space for building components while enabling the design team to embed specific style guide information.
                 </p>
               </div>
               <div className="p-8 bg-background border border-border rounded-2xl">
                 <Activity className="w-10 h-10 text-accent mb-6" />
-                <h4 className="text-xl font-bold mb-4">Design Analytics</h4>
+                <h4 className="text-xl font-bold mb-4">Real-time Reference</h4>
                 <p className="text-sm text-muted leading-relaxed">
-                  We monitored library and component usage via Figma's internal analytics to identify refinement areas and demonstrate effectiveness to stakeholders.
+                  Integration of the Figma node view plug-in allowed engineers to view real-time designs and reference specs as components were being constructed.
                 </p>
               </div>
             </div>
           </div>
 
+          <SectionHeader 
+            tag="growth & workflow" 
+            title="Analytics & Governance"
+            description="Leveraging Figma’s internal Design System Analytics to shape the usage of our system."
+          />
+
           <div className="grid lg:grid-cols-2 gap-12">
-            <ImageZoom src="/images/figma-stats.webp" alt="Figma Stats" caption="Figma library usage analytics" />
-            <ImageZoom src="/images/usecase-flows.webp" alt="UseCase Flows" caption="Scenario mapping for design system consumption" />
+            <div className="space-y-6">
+              <ImageZoom src="/images/figma-stats.webp" alt="Figma Stats" caption="Figma library usage analytics" />
+              <p className="text-muted leading-relaxed">
+                By closely monitoring the use of libraries, components, and internal styles, we can identify areas that need further refinement and focus on areas that provide the most value.
+              </p>
+            </div>
+            <div className="space-y-6">
+              <ImageZoom src="/images/usecase-flows.webp" alt="UseCase Flows" caption="Scenario mapping for design system consumption" />
+              <p className="text-muted leading-relaxed">
+                Analyzing usage is instrumental in demonstrating the effectiveness of an analytics-driven design system to stakeholders, highlighting practical benefits in real-world scenarios.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Outcome Section */}
+      {/* Lessons Learned Section */}
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
@@ -577,12 +635,33 @@ export default function App() {
               whileInView={{ opacity: 1 }}
               className="text-accent font-mono text-xs uppercase tracking-widest mb-6 block"
             >
-              // Outcomes & Impact
+              // Lessons Learned & Impact
             </motion.span>
             <h2 className="text-5xl md:text-7xl font-bold mb-12 tracking-tighter">40% Faster Start-up Time</h2>
             <p className="text-xl text-muted leading-relaxed mb-16">
-              The efficiency gain was significant across all Agile teams within the company. Since its adoption, the system has grown to over 1,000 unique elements, components, and modules.
+              The efficiency gain was significant across all Agile teams. Since its adoption, the system has grown to over 1,000 unique elements, components, and modules.
             </p>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-24 text-left">
+              <div className="p-10 bg-surface border border-border rounded-3xl">
+                <h4 className="text-xl font-bold mb-4">Collaboration</h4>
+                <p className="text-sm text-muted leading-relaxed">
+                  Should have involved a broader range of colleagues, including QE, Infrastructure, and SoftOps earlier in the process.
+                </p>
+              </div>
+              <div className="p-10 bg-surface border border-border rounded-3xl">
+                <h4 className="text-xl font-bold mb-4">Stakeholders</h4>
+                <p className="text-sm text-muted leading-relaxed">
+                  Demonstrating value to leadership earlier could have accelerated resource allocation and implementation.
+                </p>
+              </div>
+              <div className="p-10 bg-surface border border-border rounded-3xl">
+                <h4 className="text-xl font-bold mb-4">Impact</h4>
+                <p className="text-sm text-muted leading-relaxed">
+                  Growth to 1,000+ unique elements is a testament to the system's success and ongoing impact.
+                </p>
+              </div>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
@@ -604,16 +683,21 @@ export default function App() {
       {/* Footer */}
       <footer className="py-24 border-t border-border bg-surface/20">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">Let's build together</h3>
-              <p className="text-muted">CNBC Design System Case Study</p>
+          <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+            <div className="max-w-md">
+              <h3 className="text-4xl font-bold mb-8 tracking-tighter">let's create together!</h3>
+              <a href="mailto:hello@mattshade.com" className="text-xl hover:text-accent transition-colors">get in touch</a>
             </div>
-
+            <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+              <a href="#hero" className="text-xs uppercase tracking-widest text-muted hover:text-accent">Home</a>
+              <a href="https://mattshade.com/about" className="text-xs uppercase tracking-widest text-muted hover:text-accent">about</a>
+              <a href="https://mattshade.com/contact" className="text-xs uppercase tracking-widest text-muted hover:text-accent">contact</a>
+              <a href="https://linkedin.com/in/mattshade" className="text-xs uppercase tracking-widest text-muted hover:text-accent">linkedin</a>
+            </div>
           </div>
           <div className="mt-24 pt-12 border-t border-border flex justify-between items-center text-[10px] uppercase tracking-widest text-muted">
             <span>© Matt Shade</span>
-            <span>Architected for Scale</span>
+            <span>CNBC Design System Case Study</span>
           </div>
         </div>
       </footer>
