@@ -48,16 +48,32 @@ const Navbar = ({ presentationMode, setPresentationMode }: { presentationMode: b
       isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border py-3" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <motion.div 
+        <motion.a
+          href="/"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3"
+          className="flex items-center gap-2 group transition-transform duration-300 hover:scale-[1.02]"
         >
-          <div className="w-8 h-8 bg-accent rounded-sm flex items-center justify-center font-bold text-background text-xs">
-            DS
-          </div>
-          <span className="font-medium tracking-tight uppercase text-sm hidden sm:block">CNBC Design System</span>
-        </motion.div>
+          <svg 
+            width="18" 
+            height="18" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            className="shrink-0"
+          >
+            <path 
+              fill="currentColor" 
+              className="text-accent"
+              d="M 12 1 L 20 14 L 23 21 L 16 16 L 12 23 L 8 16 L 1 21 L 4 14 Z"
+            />
+            <circle cx="12" cy="10.5" r="3.2" fill="#ffffff" />
+            <circle cx="12" cy="10.5" r="1.3" fill="#0a0a0b" />
+          </svg>
+          <span className="text-[16px] font-semibold text-[#F3F4F6] tracking-tight whitespace-nowrap">
+            Matt Shade
+          </span>
+        </motion.a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link, i) => (
