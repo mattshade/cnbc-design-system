@@ -21,7 +21,7 @@ function cn(...inputs: ClassValue[]) {
 
 // --- Components ---
 
-const Navbar = ({ presentationMode, setPresentationMode }: { presentationMode: boolean, setPresentationMode: (val: boolean) => void }) => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -44,7 +44,6 @@ const Navbar = ({ presentationMode, setPresentationMode }: { presentationMode: b
   return (
     <nav className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4",
-      presentationMode ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100",
       isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border py-3" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -88,14 +87,6 @@ const Navbar = ({ presentationMode, setPresentationMode }: { presentationMode: b
               {link.name}
             </motion.a>
           ))}
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            onClick={() => setPresentationMode(true)}
-            className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-medium hover:bg-white/10 transition-colors"
-          >
-            Presentation Mode
-          </motion.button>
         </div>
 
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -218,7 +209,6 @@ const SectionHeader = ({ tag, title, description }: { tag: string, title: string
 // --- Main App ---
 
 export default function App() {
-  const [presentationMode, setPresentationMode] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
   
   const { scrollYProgress } = useScroll()
@@ -235,41 +225,17 @@ export default function App() {
   }, [])
 
   return (
-    <div className={cn(
-      "min-h-screen bg-background text-foreground selection:bg-accent/30 transition-all duration-700",
-      presentationMode ? "p-0" : ""
-    )}>
+    <div className="min-h-screen bg-background text-foreground selection:bg-accent/30 transition-all duration-700">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
-        style={{ scaleX: presentationMode ? 0 : scaleX }}
+        style={{ scaleX }}
       />
       
-      <Navbar presentationMode={presentationMode} setPresentationMode={setPresentationMode} />
-
-      {/* Presentation Controls (Sticky/Float) */}
-      <AnimatePresence>
-        {presentationMode && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 bg-surface/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center gap-6 shadow-2xl"
-          >
-            <span className="text-xs font-mono uppercase tracking-widest text-accent">Presentation Mode</span>
-            <div className="w-px h-4 bg-white/10" />
-            <button 
-              onClick={() => setPresentationMode(false)}
-              className="text-xs font-bold hover:text-accent transition-colors"
-            >
-              Exit
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Navbar />
 
       {/* Back to Top */}
       <AnimatePresence>
-        {showBackToTop && !presentationMode && (
+        {showBackToTop && (
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
