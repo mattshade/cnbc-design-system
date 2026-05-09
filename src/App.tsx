@@ -48,7 +48,7 @@ const Navbar = () => {
     )}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <motion.a
-          href="/"
+          href="https://mattshade.com"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-2 group transition-transform duration-300 hover:scale-[1.02]"
