@@ -261,7 +261,7 @@ export default function App() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 py-8 border-y border-border">
                   {[
                     { label: 'Company', value: 'CNBC' },
-                    { label: 'Year', value: '2021' },
+
                     { label: 'Service', value: 'Design System Creation' },
                     { label: 'My Role', value: 'Lead Product Designer' },
                     { label: 'Industry', value: 'Media' },
