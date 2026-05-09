@@ -4,7 +4,6 @@ import {
   ChevronRight, 
   Menu, 
   X, 
-  ArrowRight, 
   Layers, 
   Layout, 
   Activity, 
