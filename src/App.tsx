@@ -33,12 +33,8 @@ const Navbar = () => {
   }, [])
 
   const navLinks = [
-    { name: 'Overview', href: '#overview' },
-    { name: 'Problem', href: '#problem' },
-    { name: 'Solution', href: '#solution' },
-    { name: 'System', href: '#system' },
-    { name: 'Process', href: '#process' },
-    { name: 'Implementation', href: '#implementation' },
+    { name: 'CASE STUDIES AND PROJECTS', href: 'https://mattshade.com/#projects' },
+    { name: 'EXPERIENCE', href: 'https://mattshade.com/#experience' },
   ]
 
   return (
@@ -53,9 +49,13 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-3 group transition-transform duration-300 hover:scale-[1.02]"
         >
-          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-background font-bold text-xl">C</div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 text-accent">
+            <path fill="currentColor" d="M 12 1 L 20 14 L 23 21 L 16 16 L 12 23 L 8 16 L 1 21 L 4 14 Z" />
+            <circle cx="12" cy="10.5" r="3.2" fill="#ffffff" />
+            <circle cx="12" cy="10.5" r="1.3" fill="#0a0a0b" />
+          </svg>
           <span className="text-[16px] font-bold text-[#F3F4F6] tracking-tight whitespace-nowrap uppercase">
-            CNBC Design System
+            Matt Shade
           </span>
         </motion.a>
 
