@@ -609,14 +609,7 @@ export default function App() {
               <h3 className="text-2xl font-bold mb-4">Let's build together</h3>
               <p className="text-muted">CNBC Design System Case Study</p>
             </div>
-            <div className="flex gap-4">
-              <button className="btn-primary">
-                View on GitHub <ArrowRight className="w-4 h-4" />
-              </button>
-              <button className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-full transition-colors border border-white/10 text-sm font-medium">
-                Back to Portfolio
-              </button>
-            </div>
+
           </div>
           <div className="mt-24 pt-12 border-t border-border flex justify-between items-center text-[10px] uppercase tracking-widest text-muted">
             <span>© Matt Shade</span>
