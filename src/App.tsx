@@ -258,17 +258,16 @@ export default function App() {
                   Focuses on the development and implementation of a comprehensive design system for CNBC, keeping our brand consistent, and improving the user experience across all digital platforms.
                 </p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 py-8 border-y border-border">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-8 py-8 border-y border-border">
                   {[
                     { label: 'Company', value: 'CNBC' },
-
                     { label: 'Service', value: 'Design System Creation' },
                     { label: 'My Role', value: 'Lead Product Designer' },
                     { label: 'Industry', value: 'Media' },
                   ].map((stat) => (
-                    <div key={stat.label}>
-                      <p className="text-[10px] uppercase tracking-widest text-muted mb-1">{stat.label}</p>
-                      <p className="font-medium text-sm">{stat.value}</p>
+                    <div key={stat.label} className="flex flex-col justify-start">
+                      <p className="text-[10px] uppercase tracking-widest text-muted/60 mb-2 font-medium">{stat.label}</p>
+                      <p className="font-semibold text-sm text-foreground whitespace-nowrap">{stat.value}</p>
                     </div>
                   ))}
                 </div>
@@ -283,9 +282,9 @@ export default function App() {
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-accent/50 to-transparent blur-md opacity-30" />
                 <img 
-                  src="/images/hero.webp" 
+                  src="/images/hero-macbook.png" 
                   alt="CNBC Design System Hero" 
-                  className="rounded-2xl border border-border shadow-2xl relative z-10"
+                  className="rounded-xl border border-white/5 shadow-2xl relative z-10"
                 />
               </motion.div>
             </div>
