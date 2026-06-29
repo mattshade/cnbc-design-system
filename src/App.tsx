@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import { 
   ChevronRight, 
@@ -9,10 +9,21 @@ import {
   Activity, 
   BookOpen, 
   Search,
-  ZoomIn
+  ZoomIn,
+  Presentation,
 } from 'lucide-react'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { PresenterView } from './components/PresenterView'
+import { RemoteControl } from './components/RemoteControl'
+import { SLIDE_IDS } from './data/slides'
+import {
+  buildPresentationUrl,
+  generateSessionId,
+  getModeFromUrl,
+  getSessionFromUrl,
+  usePresentationSync,
+} from './hooks/usePresentationSync'
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -20,7 +31,7 @@ function cn(...inputs: ClassValue[]) {
 
 // --- Components ---
 
-const Navbar = () => {
+const Navbar = ({ onPresenterMode }: { onPresenterMode?: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -72,6 +83,15 @@ const Navbar = () => {
               {link.name}
             </motion.a>
           ))}
+          {onPresenterMode && (
+            <button
+              onClick={onPresenterMode}
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-accent text-background rounded-lg hover:opacity-90 transition-opacity"
+            >
+              <Presentation size={16} />
+              Presenter Script
+            </button>
+          )}
         </div>
 
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -98,6 +118,18 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
+              {onPresenterMode && (
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    onPresenterMode()
+                  }}
+                  className="flex items-center gap-2 text-lg font-medium text-accent"
+                >
+                  <Presentation size={18} />
+                  Presenter Script
+                </button>
+              )}
             </div>
           </motion.div>
         )}
@@ -193,8 +225,58 @@ const SectionHeader = ({ tag, title, description }: { tag: string, title: string
 
 // --- Main App ---
 
-export default function App() {
+function AppRouter() {
+  const mode = getModeFromUrl()
+  const sessionFromUrl = getSessionFromUrl()
+  const sessionId = sessionFromUrl ?? generateSessionId()
+
+  useEffect(() => {
+    if (!mode || sessionFromUrl) return
+    const url = new URL(window.location.href)
+    url.searchParams.set('session', sessionId)
+    window.history.replaceState({}, '', url.toString())
+  }, [mode, sessionFromUrl, sessionId])
+
+  if (mode === 'presenter') {
+    return <PresenterView sessionId={sessionId} />
+  }
+  if (mode === 'remote') {
+    return <RemoteControl sessionId={sessionId} />
+  }
+
+  return <CaseStudyApp audienceMode={mode === 'present'} sessionId={sessionId} />
+}
+
+function CaseStudyApp({
+  audienceMode = false,
+  sessionId,
+}: {
+  audienceMode?: boolean
+  sessionId: string
+}) {
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const sync = usePresentationSync(sessionId, false)
+
+  const startPresenterMode = () => {
+    const session = generateSessionId()
+    window.open(buildPresentationUrl('presenter', session), 'cnbc-presenter')
+  }
+
+  useLayoutEffect(() => {
+    if (!audienceMode) return
+
+    const scrollToSection = () => {
+      const sectionId = SLIDE_IDS[sync.activeSlide]
+      const el = document.getElementById(sectionId)
+      if (el) {
+        el.scrollIntoView({ behavior: 'auto', block: 'start' })
+      }
+    }
+
+    scrollToSection()
+    const retry = window.setTimeout(scrollToSection, 150)
+    return () => window.clearTimeout(retry)
+  }, [sync.activeSlide, audienceMode])
   
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -204,10 +286,11 @@ export default function App() {
   })
 
   useEffect(() => {
+    if (audienceMode) return
     const handleScroll = () => setShowBackToTop(window.scrollY > 500)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [audienceMode])
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent/30 transition-all duration-700">
@@ -216,11 +299,11 @@ export default function App() {
         style={{ scaleX }}
       />
       
-      <Navbar />
+      <Navbar onPresenterMode={audienceMode ? undefined : startPresenterMode} />
 
       {/* Back to Top */}
       <AnimatePresence>
-        {showBackToTop && (
+        {showBackToTop && !audienceMode && (
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -234,7 +317,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center pt-24 overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="absolute top-1/4 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 -left-24 w-96 h-96 bg-accent/5 rounded-full blur-[120px]" />
@@ -624,7 +707,7 @@ export default function App() {
       </section>
 
       {/* Lessons Learned Section */}
-      <section className="section-padding">
+      <section id="impact" className="section-padding">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <motion.span 
@@ -678,6 +761,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
+      {!audienceMode && (
       <footer className="py-24 border-t border-border bg-surface/20">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12">
@@ -698,6 +782,9 @@ export default function App() {
           </div>
         </div>
       </footer>
+      )}
     </div>
   )
 }
+
+export default AppRouter
